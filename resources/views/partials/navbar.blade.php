@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-info fixed-top" data-bs-theme="dark">
+<nav class="navbar navbar-dark bg-info fixed-top position-absolute" data-bs-theme="dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">Presense App</a>
       @auth
@@ -17,7 +17,7 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Account</a>
+              <a class="nav-link" href="/account/{{ auth()->user()->username }}">Account</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Link</a>

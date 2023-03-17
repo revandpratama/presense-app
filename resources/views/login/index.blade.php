@@ -3,7 +3,7 @@
 @section('container')
 <main class="form-signin w-100 m-auto">
     <form action="/login" method="POST">
-        @csrf
+    @csrf
       <h1 class="h3 mb-3 fw-normal">Login</h1>
   
       <div class="form-floating"> 
