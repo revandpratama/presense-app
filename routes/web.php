@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\UsersController;
+use App\Models\Subject;
+use App\Models\Presense;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +21,30 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index',  [
-        'pageTitle' => 'Home'
+        'pageTitle' => 'Home',
+        'subjects' => Subject::all()
     ]);
 })->middleware('auth');
 
+Route::get('/presense/{subject:slug}', function(Subject $subject) {
+    return view('presenseForm', [
+        'subject' => $subject
+    ]);
+});
+
+Route::post('/presense', function(Request $request) {
+    $validatedData = $request->validate([
+        'user_id' => 'required',
+        'subject_id' => 'required',
+        'appointment' => 'required',
+        'status' => 'required' 
+    ]);
+    Presense::create($validatedData);
+
+    return redirect('/')->with('success', 'Presense Succes');
+});
+
+// * Login Controller
 Route::get('/login', [LoginController::class, 'index'])->name('login')
 ->middleware('guest');
 
@@ -31,6 +54,24 @@ Route::post('/login', [LoginController::class, 'authenticate'])
 Route::post('/logout', [LoginController::class, 'logout'])
 ->middleware('auth');
 
+// * Register Controller
+Route::get('/register', [RegisterController::class, 'index'])
+->middleware('guest');
 
-Route::resource('/account', UsersController::class)
-->middleware('auth')->only(['show', 'edit', 'update']);
+Route::post('/register', [RegisterController::class, 'store'])
+->middleware('guest');
+
+
+// * Dashboard Route
+Route::get('/dashboard', function (){
+        $user = auth()->user();
+    return view('user.index', [
+        'user' => $user,
+        'pageTitle' => 'Dashboard',
+        'presense' => Presense::with(['subject'])->where('user_id', $user->id)->get()
+    ]);
+})
+->middleware('auth');
+
+Route::resource('dashboard/account', UsersController::class)
+->middleware('auth');

@@ -45,9 +45,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
+    public function subjects(){
+        return $this->belongsToMany(Subject::class);
+    }
+
+    public function presense(){
+        return $this->hasMany(Presense::class);
+    }
+
+
+
     public function getRouteKeyName(): string
     {
         return 'username';
     }
+
 }

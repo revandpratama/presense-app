@@ -1,8 +1,8 @@
-<nav class="navbar navbar-dark bg-info fixed-top position-absolute" data-bs-theme="dark">
+<nav class="navbar navbar-dark bg-primary fixed-top position-absolute" data-bs-theme="dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">Presense App</a>
       @auth
-      <div class="ms-auto me-2 fw-semibold fs-5 p-2">
+      <div class="btn ms-auto me-2 fw-semibold fs-5 p-2 text-light bg-primary-emphasis">
         Hello, {{ auth()->user()->name }}
       </div>
 
@@ -11,15 +11,15 @@
       </button>
       <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Main</h5>
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link" href="/account/{{ auth()->user()->username }}">Account</a>
+              <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
             </li>
             <li class="nav-item dropdown">
@@ -34,7 +34,7 @@
                 </li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
-            </li>
+            </li> --}}
             <li class="nav-item">
               <form action="/logout" method="post">
                 @csrf

@@ -5,15 +5,21 @@
       </h6>
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('account*') ? 'active' : '' }}" aria-current="page" href="/account/{{ $user->username }}">
+          <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page" href="/dashboard">
             <span data-feather="home" class="align-text-bottom"></span>
-            My Presence
+            My Presense
           </a>
         </li>
-        <li class="nav-item {{ Request::is('account/edit') ? 'active' : ''}}">
-          <a class="nav-link" href="/account/{{ $user->username }}/edit">
+        <li class="nav-itemx">
+          <a class="nav-link {{ Request::is('dashboard/account*') ? 'active' : '' }}" href="/dashboard/account/{{  $user->username  }}/edit">
             <span data-feather="file" class="align-text-bottom"></span>
-            Edit Account
+            My Account
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">
+            <span data-feather="arrow-left" class="align-text-bottom"></span>
+            Back
           </a>
         </li>
         

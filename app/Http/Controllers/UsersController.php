@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -13,7 +14,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -37,11 +38,7 @@ class UsersController extends Controller
      */
     public function show(User $username)
     {
-        $user = auth()->user();
-        return view('user.index', [
-            'user' => $user,
-            'pageTitle' => 'Dashboard'
-        ]);
+        
     }
 
     /**
@@ -61,7 +58,17 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $rules = [
+            'name' => 'required|max:50',
+            'username' => 'required|regex:/^[^\s]+$/|max:15',
+            'email' => 'required|email|max:50'
+        ];
+
+        $validatedData = $request->validate($rules, ['username.regex' => 'Username must not contain space']);
+
+        User::where('id', Auth::user()->id)->update($validatedData);
+
+        return redirect('/dashboard')->with('success', 'User Has been updated');
     }
 
     /**

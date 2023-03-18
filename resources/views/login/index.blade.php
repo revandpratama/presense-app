@@ -2,6 +2,12 @@
 
 @section('container')
 <main class="form-signin w-100 m-auto">
+  @if (session()->has('success'))
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ session('success') }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  @endif
     <form action="/login" method="POST">
     @csrf
       <h1 class="h3 mb-3 fw-normal">Login</h1>
@@ -34,6 +40,7 @@
           {{ session('error') }}
       @endif
       <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+      <small>Not Registered yet? <a href="/register" class="text-decoration-none">Register</a></small>
       <p class="mt-5 mb-3 text-muted">&copy; 2023</p>
     </form>
   </main>
