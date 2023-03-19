@@ -11,7 +11,7 @@
           </a>
         </li>
         <li class="nav-itemx">
-          <a class="nav-link {{ Request::is('dashboard/account*') ? 'active' : '' }}" href="/dashboard/account/{{  $user->username  }}/edit">
+          <a class="nav-link {{ Request::is('dashboard/account*') ? 'active' : '' }}" href="/dashboard/account/{{ auth()->user()->username  }}/edit">
             <span data-feather="file" class="align-text-bottom"></span>
             My Account
           </a>
@@ -22,7 +22,17 @@
             Back
           </a>
         </li>
-        
+      </ul>
+      <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mb-1 mt-3 text-muted text-uppercase">
+        <span>ADMIN</span>
+      </h6>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link {{ Request::is('dashboard/lookout*') ? 'active' : '' }}" aria-current="page" href="/dashboard/lookout">
+            <span data-feather="eye" class="align-text-bottom"></span>
+            All Presense
+          </a>
+        </li>
       </ul>
     </div>
   </nav>

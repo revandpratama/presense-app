@@ -23,29 +23,30 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         \App\Models\Presense::create([
-            'user_id' => '8',
-            'subject_id' => '1',
-            'appointment' => '2',
-            'status' => 'present'
-        ]);
-        \App\Models\Presense::create([
-            'user_id' => '8',
-            'subject_id' => '2',
-            'appointment' => '2',
-            'status' => 'absent'
-        ]);
-        \App\Models\Presense::create([
-            'user_id' => '8',
-            'subject_id' => '3',
-            'appointment' => '2',
-            'status' => 'present'
-        ]);
-        \App\Models\Presense::create([
             'user_id' => '1',
-            'subject_id' => '4',
-            'appointment' => '2',
+            'subject_id' => '1',
+            'appointment' => '3',
             'status' => 'present'
         ]);
+        \App\Models\Presense::create([
+            'user_id' => '2',
+            'subject_id' => '1',
+            'appointment' => '3',
+            'status' => 'present'
+        ]);
+        \App\Models\Presense::create([
+            'user_id' => '3',
+            'subject_id' => '1',
+            'appointment' => '3',
+            'status' => 'present'
+        ]);
+        \App\Models\Presense::create([
+            'user_id' => '4',
+            'subject_id' => '1',
+            'appointment' => '3',
+            'status' => 'present'
+        ]);
+        
 
 
         // \App\Models\Subject::create([

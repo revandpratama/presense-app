@@ -11,7 +11,7 @@
         <h1>Presense</h1>
         <div class="row">
             @foreach ($subjects as $subject)
-            <div class="col-md-4 my-2">
+            <div class="col-md-4 mb-5 mt-3">
                 <a href="/presense/{{ $subject->slug }}">              
                     <div class="card text-bg-dark" style="max-height:400;max-width:500">
                     <img src="https://source.unsplash.com/500x400?{{ $subject->name }}" class="card-img" alt="...">

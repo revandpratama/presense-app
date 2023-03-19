@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\LookoutController;
 use App\Http\Controllers\RegisterController;
 
 /*
@@ -68,10 +69,18 @@ Route::get('/dashboard', function (){
     return view('user.index', [
         'user' => $user,
         'pageTitle' => 'Dashboard',
-        'presense' => Presense::with(['subject'])->where('user_id', $user->id)->get()
+        'presenses' => Presense::with(['subject'])->where('user_id', $user->id)->get()
     ]);
 })
 ->middleware('auth');
 
 Route::resource('dashboard/account', UsersController::class)
+->middleware('auth');
+
+
+// * LookoutController
+
+// Route::get('/dashboard/lookout/{subject}', [LookoutController::class, 'show']);
+
+Route::resource('dashboard/lookout', LookoutController::class)
 ->middleware('auth');
