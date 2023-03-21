@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Presense;
 use App\Models\Subject;
-use App\Models\User;
+use App\Models\Presense;
 use Illuminate\Http\Request;
 
 class LookoutController extends Controller
@@ -12,8 +11,10 @@ class LookoutController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Presense $presense)
+    public function index()
     {
+        
+        // $this->authorize('admin');
         return view('user.lookout.index', [
             'pageTitle' => 'Lookout',
             'subjects' => Subject::all()
@@ -41,16 +42,13 @@ class LookoutController extends Controller
      */
     public function show(Subject $subject)
     {
-        return view('user.lookout.show', [
-            'users' => Presense::where('appointment', request('app'))->where('subject_id', $subject->id)->get(),
-            'pageTitle' => 'Lookout'
-        ]);
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Presense $presense)
+    public function edit(Subject $subject)
     {
         //
     }
@@ -58,7 +56,7 @@ class LookoutController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Presense $presense)
+    public function update(Request $request, Subject $subject)
     {
         //
     }
@@ -66,7 +64,7 @@ class LookoutController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Presense $presense)
+    public function destroy(Subject $subject)
     {
         //
     }

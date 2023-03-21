@@ -38,7 +38,7 @@ Route::post('/presense', function(Request $request) {
         'user_id' => 'required',
         'subject_id' => 'required',
         'appointment' => 'required',
-        'status' => 'required' 
+        'status' => 'required'
     ]);
     Presense::create($validatedData);
 
@@ -74,13 +74,17 @@ Route::get('/dashboard', function (){
 })
 ->middleware('auth');
 
-Route::resource('dashboard/account', UsersController::class)
+Route::resource('/dashboard/account', UsersController::class)
 ->middleware('auth');
 
 
 // * LookoutController
 
-// Route::get('/dashboard/lookout/{subject}', [LookoutController::class, 'show']);
+Route::get('/dashboard/lookout/{subject}', function(Subject $subject){
+    return view('user.lookout.show', [
+        'users' => Presense::where('appointment', request('app'))->where('subject_id', $subject->id)->get(),
+        'pageTitle' => 'Lookout'
+    ]);
+})->middleware('admin');
 
-Route::resource('dashboard/lookout', LookoutController::class)
-->middleware('auth');
+Route::resource('/dashboard/lookout', LookoutController::class)->only('index')->middleware('admin');

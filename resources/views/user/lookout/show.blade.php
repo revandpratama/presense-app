@@ -1,3 +1,4 @@
+@dd($users)
 @extends('user.layouts.main')
 
 @section('container')   
@@ -8,7 +9,9 @@
                 @if ($users->isEmpty())
                     <h1>Empty</h1>
                 @else
-                    <h3 class="my-3">{{ $users[0]->subject->name }}</h3>
+
+                    
+                    <h3 class="my-3">{{ $users[0]->subject->name }} Appointment : {{ request('app') }}</h3>
                     <table class="table table-striped mb-5">
                         <tr>
                             <th>Name</th>
@@ -17,7 +20,7 @@
                         @foreach ($users as $user)
                             <tr>
                                 <td>{{ $user->user->name }}</td>
-                                <td>{{ $user->created_at->format('d-M-Y H:i') }}</td>
+                                <td>{{ $user->created_at->format('l, d-m-Y H:i') }}</td>
                             </tr>
                         @endforeach
                         

@@ -20,6 +20,9 @@
                             <option value="{{ $i }}">{{ $i }}</option>
                         @endfor
                     </select>
+                    @error('appointment')
+                       <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <button class="btn btn-primary form-control" type="submit" name="submit">Submit</button>

@@ -81,7 +81,7 @@
                             @endphp
                             @if ($presense && $presense->status == 'present')
                                 <td><span class="me-2">{{ $i }}</span><input type="checkbox" checked onclick="this.checked = !this.checked"></td>
-                                <td>{{ $presense->created_at->format('d-M-Y H:i') }}</td>
+                                <td>{{ $presense->created_at->format('l, d-m-Y H:i') }}</td>
                             @else
                                 <td><span class="me-2">{{ $i }}</span><input type="checkbox" onclick="this.checked = !this.checked"></td>
                                 <td class="text-danger">absent</td>
@@ -93,3 +93,5 @@
         @endif
     </div>
 @endsection 
+
+

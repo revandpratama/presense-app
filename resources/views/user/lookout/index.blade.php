@@ -18,11 +18,12 @@
                     @foreach ($subjects as $subject)
                         <tr>
                             <td>{{ $subject->name }}</td>
-                            <td>
-                                <a href="/dashboard/lookout/{{ $subject->slug }}">1</a> 
-                                <a href="/dashboard/lookout/{{ $subject->slug }}?app=2">2</a> 
-                                <a href="/dashboard/lookout/{{ $subject->slug }}?app=3">3</a>
-                                <a href="">4</a>
+                            <td class="d-block">
+                                @for ($i = 1; $i <= 16; $i++)
+                                    <a class="mx-2"href="/dashboard/lookout/{{ $subject->slug }}?app={{ $i }}">{{ $i }}</a> 
+                                @endfor
+
+                                
                             </td>
                         </tr>
                     @endforeach
