@@ -15,9 +15,32 @@
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Appointment</label>
+                    {{-- <select class="form-control" name="appointment" id="">
+                        @for ($i = 1; $i <= 16; $i++)
+
+                            @if ($subject->presense[0]->appointment == $i &&  $subject->presense[0]->user_id == auth()->user()->id)
+                                <option value="{{ $i }}" class="text-success">{{ $i }} </option>
+                            @else
+                                <option value="{{ $i }}" class="text-danger">{{ $i }} </option>
+                            @endif
+                            
+                        @endfor
+                    </select> --}}
                     <select class="form-control" name="appointment" id="">
                         @for ($i = 1; $i <= 16; $i++)
-                            <option value="{{ $i }}">{{ $i }}</option>
+                            @php $userPresent = false; @endphp
+                            @foreach ($subject->presense as $presense)
+                                @if ($presense->appointment == $i && $presense->user_id == auth()->user()->id)
+                                    @php $userPresent = true; @endphp
+                                    @break
+                                @endif
+                            @endforeach
+                    
+                            @if ($userPresent)
+                                <option value="{{ $i }}" class="text-success">{{ $i }}</option>
+                            @else
+                                <option value="{{ $i }}" class="text-danger">{{ $i }}</option>
+                            @endif
                         @endfor
                     </select>
                     @error('appointment')

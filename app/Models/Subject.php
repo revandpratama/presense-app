@@ -15,6 +15,10 @@ class Subject extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function presense(){
+        return $this->hasMany(Presense::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

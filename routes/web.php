@@ -29,7 +29,7 @@ Route::get('/', function () {
 
 Route::get('/presense/{subject:slug}', function(Subject $subject) {
     return view('presenseForm', [
-        'subject' => $subject
+        'subject' => $subject->load(['presense'])    
     ]);
 });
 
