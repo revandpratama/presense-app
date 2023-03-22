@@ -87,4 +87,11 @@ Route::get('/dashboard/lookout/{subject}', function(Subject $subject){
     ]);
 })->middleware('admin');
 
+Route::delete('/dashboard/lookout/{presense:id}', function (Presense $presense) {
+    Presense::destroy($presense->id);
+
+    return back()->with('success', 'Presense Deleted');
+});
+
 Route::resource('/dashboard/lookout', LookoutController::class)->only('index')->middleware('admin');
+

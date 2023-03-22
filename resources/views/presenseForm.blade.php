@@ -37,7 +37,7 @@
                             @endforeach
                     
                             @if ($userPresent)
-                                <option value="{{ $i }}" class="text-success">{{ $i }}</option>
+                                <option value="{{ $i }}" class="text-success">{{ $i }} Filled</option>
                             @else
                                 <option value="{{ $i }}" class="text-danger">{{ $i }}</option>
                             @endif

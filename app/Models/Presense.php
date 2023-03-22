@@ -23,8 +23,5 @@ class Presense extends Model
         return $this->belongsTo(Subject::class);
     }
 
-    public function getRouteKeyName()
-    {
-        return 'appointment';
-    }
+    
 }

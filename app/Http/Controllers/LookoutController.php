@@ -64,8 +64,8 @@ class LookoutController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Subject $subject)
+    public function destroy(Presense $presense)
     {
-        //
+        
     }
 }
